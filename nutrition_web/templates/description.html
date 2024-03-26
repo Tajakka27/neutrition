@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid py-lg-5">
+    <div class="container-fluid px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title position-relative mb-4 pb-2 py-lg-5 " >
+                    <h1 class="position-relative text-primary ps-1">About Our Nutrition Center</h1>
+                    <h2 class="mt-2">Your Path to Healthier Living</h2>
+                </div>
+                <p>
+                    {{ personal_info.full_description_First_Pera}}
+                </p>
+
+                <p>
+                    {{ personal_info.full_description_Second_Pera}}
+                </p>
+
+                <p>
+                    {{ personal_info.full_description_Third_Pera}}
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
