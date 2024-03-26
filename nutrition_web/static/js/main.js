@@ -67,31 +67,37 @@
         return false;
     });
 
+    
 
     // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        margin: 25,
-        dots: false,
-        loop: true,
-        center: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
-        }
+    // Testimonials carousel
+    $(".testimonial-carousel").each(function(index) {
+        var $testimonialCarousel = $(this);
+        $testimonialCarousel.owlCarousel({
+          autoplay: true,
+          smartSpeed: 1000,
+          margin: 25,
+          dots: false,
+          loop: true,
+          center: true,
+          responsive: {
+            0: { items: 1 },
+            576: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
+          }
+        });
+    
+        // Content change buttons
+        $testimonialCarousel.parent().find(".owl-prev").click(function () {
+          $testimonialCarousel.trigger("prev.owl.carousel");
+        });
+    
+        $testimonialCarousel.parent().find(".owl-next").click(function () {
+          $testimonialCarousel.trigger("next.owl.carousel");
+        });
     });
-
+    
 
     // Portfolio isotope and filter
     var portfolioIsotope = $('.portfolio-container').isotope({
