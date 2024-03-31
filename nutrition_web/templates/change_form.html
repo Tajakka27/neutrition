@@ -1,0 +1,8 @@
+{% extends "admin/change_form.html" %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    {% if show_export_button %}
+        <a href="{% url 'admin:export_appointments_csv' %}" class="button" title="Export as CSV">Export as CSV</a>
+    {% endif %}
+{% endblock %}

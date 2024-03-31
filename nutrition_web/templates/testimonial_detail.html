@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container text-center py-lg-5 align-items-center">
+    <div class="mx-auto" style="padding-top: 7%;">
+        <div class="d-flex align-items-center">
+            <img class="img-fluid flex-shrink-0 rounded-circle"  src="{{ testimonial.image.url }}" style="width: 100px; height: 100px;">
+            <div class="ps-3">
+                <h6 class="text-dark mb-1">{{ testimonial.Client_Name }}</h6>
+                <small>{{ testimonial.Profession }}</small>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!-- <div class="container" style="padding-top: 9%;"> 
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center">
+                <img src="{{ testimonial.image.url }}" style="width: 100px; height: 100px;">
+                <div class="ps-3">
+                    <h6 class="text-dark mb-1">{{ testimonial.Client_Name }}</h6>
+                    <small>{{ testimonial.Profession }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container py-3 text-dark">
+    <p style="text-align:justify;">
+        {{ testimonial.review }}
+    </p>
+</div >
+
+
+{% endblock %}
