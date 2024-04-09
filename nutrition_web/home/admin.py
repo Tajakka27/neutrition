@@ -29,13 +29,22 @@ class AppointmentAdmin(admin.ModelAdmin):
     def export_to_csv(self, request, queryset):
         try:
             response = HttpResponse(content_type='text/csv')
-            response['Content-Disposition'] = 'attachment; filename="filtered_data.csv"'
+            response['Content-Disposition'] = 'attachment; filename="appointment_file.csv"'
             
             writer = csv.writer(response)
-            writer.writerow(['Name', 'Email', 'Phone', 'Created Date'])
+            # Write header row with all fields
+            writer.writerow(['Name', 'Email', 'Phone', 'Cause', 'Created Date'])
             
             for obj in queryset:
-                writer.writerow([obj.name, obj.email, obj.phone, obj.created_date])
+                # Handle empty fields
+                name = obj.name if obj.name else 'Not Given'
+                email = obj.email if obj.email else 'Not Given'
+                phone = obj.phone if obj.phone else 'Not Given'
+                cause = obj.cause if obj.cause else 'Not Given'
+                created_date = obj.created_date if obj.created_date else 'Not Given'
+                
+                # Write data rows
+                writer.writerow([name, email, phone, cause, created_date])
             
             return response
         except Exception as e:
@@ -51,16 +60,16 @@ admin.site.register(Appointment, AppointmentAdmin)
 
 @admin.register(SiteDescription)
 class SiteDescriptionAdmin(admin.ModelAdmin):
-    list_display = ('motto', 'email', 'phone')  # Display these fields in the list view
+    list_display = ( 'email', 'phone')  # Display these fields in the list view
     
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ('image', 'review')   # No need to customize the admin interface for now
 
 
-@admin.register(AvailableTime)
-class AvailableTimeAdmin(admin.ModelAdmin):
-    list_display = ('day', 'start_time', 'end_time')
+# @admin.register(AvailableTime)
+# class AvailableTimeAdmin(admin.ModelAdmin):
+#     list_display = ('day', 'start_time', 'end_time')
 
 
 @admin.register(Service)

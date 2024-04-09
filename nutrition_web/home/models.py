@@ -22,8 +22,8 @@ class Appointment(models.Model):
 
 
 class SiteDescription(models.Model):
-    motto = models.CharField(max_length=100)
-    short_description = models.CharField(max_length=200)
+    # motto = models.CharField(max_length=100)
+    # short_description = models.CharField(max_length=200)
     long_description = models.TextField()
     full_description_First_Pera = models.TextField(null=True)
     full_description_Second_Pera = models.TextField(null=True)
@@ -38,6 +38,14 @@ class SiteDescription(models.Model):
     Second_banner_image = models.ImageField(upload_to='banner_images', null=True, blank=True)
     Third_banner_image = models.ImageField(upload_to='banner_images', null=True, blank=True)
 
+    #additional fields for payment
+    bkash_phone_No = models.CharField(max_length=20, null=True, blank=True)
+    bkash_transaction_id = models.CharField(max_length=50, null=True, blank=True)
+    nagad_phone_No = models.CharField(max_length=20, null=True, blank=True)
+    nagad_transaction_id = models.CharField(max_length=50, null=True, blank=True)
+    rocket_phone_No = models.CharField(max_length=20, null=True, blank=True)
+    rocket_transaction_id = models.CharField(max_length=50, null=True, blank=True)
+
     def save_model(self, request, obj, form, change):
         try:
             obj.save()
@@ -45,7 +53,7 @@ class SiteDescription(models.Model):
             messages.warning(request, str(e))
 
     def __str__(self):
-        return f"Motto: {self.motto}, Email: {self.email}, Phone: {self.phone}"
+        return f"Email: Email: {self.email}, Phone: {self.phone}"
     
  
     
@@ -79,23 +87,23 @@ class Testimonial(models.Model):
         return self.review
 
 
-class AvailableTime(models.Model):
-    DAYS_CHOICES = (
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
-    )
+# class AvailableTime(models.Model):
+#     DAYS_CHOICES = (
+#         ('Monday', 'Monday'),
+#         ('Tuesday', 'Tuesday'),
+#         ('Wednesday', 'Wednesday'),
+#         ('Thursday', 'Thursday'),
+#         ('Friday', 'Friday'),
+#         ('Saturday', 'Saturday'),
+#         ('Sunday', 'Sunday'),
+#     )
 
-    day = models.CharField(max_length=20, choices=DAYS_CHOICES)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+#     day = models.CharField(max_length=20, choices=DAYS_CHOICES)
+#     start_time = models.TimeField()
+#     end_time = models.TimeField()
 
-    def __str__(self):
-        return f"{self.day} {self.start_time.strftime('%I:%M %p')} - {self.end_time.strftime('%I:%M %p')}"
+#     def __str__(self):
+#         return f"{self.day} {self.start_time.strftime('%I:%M %p')} - {self.end_time.strftime('%I:%M %p')}"
     
 
 class Service(models.Model):

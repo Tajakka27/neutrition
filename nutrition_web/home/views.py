@@ -40,19 +40,21 @@ def appointment(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
-        concerns = request.POST.get('concerns')
+        cause = request.POST.get('cause')  # Corrected the field name here
         pdf_document = request.FILES.get('pdf_document')
 
         if name and phone:
-            ins = Appointment(name=name, email=email, phone=phone, concerns=concerns, pdf_document=pdf_document)
+            ins = Appointment(name=name, email=email, phone=phone, cause=cause, pdf_document=pdf_document)  # Corrected the field name here
             ins.save()
-            messages.success(request, 'Your appointment has been successfully scheduled!')
+            
             # Redirecting to the same page after form submission
-            return render(request, 'appointment.html', {'success_message': 'Your appointment has been successfully scheduled!'})
+           
         else:
             messages.error(request, 'Name and phone number are required fields!')
 
-    return render(request, 'appointment.html',{'personal_info': personal_info })
+    # return render(request, 'appointment.html', {'personal_info': personal_info, 'active_page': 'payment'})
+    return render(request, 'appointment.html', {'personal_info': personal_info,'active_page': 'services'})
+
 
 
    
